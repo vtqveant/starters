@@ -1,0 +1,17 @@
+#build stuff
+out/
+target/
+build/
+ 
+#netbeans specific
+core
+nbproject/*
+ 
+#general swap/backup files
+*.so
+*.log
+*.out
+*~
+*.swp
+*.DS_Store
+*.lock
