@@ -54,9 +54,13 @@ void updateDynamicArray(int **aEntries, int *pNumEntries) {
         (*pNumEntries)++;
     }
 
+    printf("aEntries[5] = %d\n", *(aEntries[5]));
+
     /* truncate */
     printf("truncating dynamic array, size = %d\n", *pNumEntries);
-    aEntries = realloc(aEntries, *pNumEntries * sizeof(int));
+    aEntries = realloc(aEntries, *pNumEntries * sizeof(int *));
+
+    printf("aEntries[5] = %d\n", *(aEntries[5]));
 }
 
 int main(int argc, char **argv) {
@@ -117,7 +121,8 @@ int main(int argc, char **argv) {
     int **aEntries, pNumEntries = 0;
     updateDynamicArray(aEntries, &pNumEntries);
     if (pNumEntries != 0) {
-        printf("got %d entries, aEntries[%d] = %d\n", pNumEntries, 5, (*aEntries)[5]);
+        printf("got %d entries\n", pNumEntries);
+        printf("aEntries[5] = %d\n", *(aEntries[5]));
     }
 
 
