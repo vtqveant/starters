@@ -8,7 +8,7 @@ OBJS=src/main.o
 	gcc -fPIC $(CFLAGS) $(INCLUDES) -c -o $@ $<
 
 main: $(OBJS)
-	gcc -rdynamic $(CFLAGS) -o $@ $(OBJS) $(LIBRARIES) 
+	gcc $(CFLAGS) -o $@ $(OBJS) $(LIBRARIES) 
 
 clean:
 	-rm $(OBJS)
