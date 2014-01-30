@@ -38,9 +38,9 @@ void updateArrOfStructs(PAIR *aPair) {
 void updateDynamicArray(int **aEntries, int *pNumEntries) {
     *pNumEntries = 0;
     int bufSize = 1;
-    *aEntries = (int *) malloc(bufSize * sizeof(int *));
+    *aEntries = (int *) malloc(bufSize * sizeof(int));
 
-    const int limit = 70;
+    const int limit = 20;
     int x = 5;
     
     while (1) {
@@ -48,15 +48,15 @@ void updateDynamicArray(int **aEntries, int *pNumEntries) {
         if (*pNumEntries == bufSize - 1) {
             bufSize *= 2;
             printf("reallocating dynamic array, size = %d\n", bufSize);
-            *aEntries = (int *) realloc(*aEntries, bufSize * sizeof(int *));
+            *aEntries = (int *) realloc(*aEntries, bufSize * sizeof(int));
         }
-        *(*aEntries + *pNumEntries) = x; // how does it work?
+        (*aEntries)[*pNumEntries] = x; 
         (*pNumEntries)++;
     }
 
     /* truncate */
     printf("truncating dynamic array, size = %d\n", *pNumEntries);
-    *aEntries = (int *) realloc(*aEntries, *pNumEntries * sizeof(int *));
+    *aEntries = (int *) realloc(*aEntries, *pNumEntries * sizeof(int));
 }
 
 int main(int argc, char **argv) {
@@ -114,11 +114,13 @@ int main(int argc, char **argv) {
     printf("------------------------------\n");
     printf("                              \n");
 
-    int *aEntries, pNumEntries = 0;
-    updateDynamicArray(&aEntries, &pNumEntries);
-    if (pNumEntries != 0) {
-        printf("got %d entries\n", pNumEntries);
-        printf("aEntries[50] = %d\n", aEntries[50]);
+    int *aEntries, numEntries = 0;
+    updateDynamicArray(&aEntries, &numEntries);
+    if (numEntries != 0) {
+        printf("got %d entries\n", numEntries);
+        int j;
+        for (j = 0; j < numEntries; j++)
+            printf("aEntries[%d] = %d\n", j, aEntries[j]);
     }
 
 
